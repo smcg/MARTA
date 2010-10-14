@@ -1,0 +1,115 @@
+<EXPERIMENT>
+<REM>Lexical Stress Study 2.1</REM>
+
+<INFO>
+	<STUDYID>HS21T1a</STUDYID>
+	<SUBJECTID>003</SUBJECTID>
+	<EXTRA>
+		<SEX>M</SEX>
+	</EXTRA>
+	<CSS>
+#instr {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 800px;
+	height: 100px; 
+	border: 1px orange solid;
+    font-size: 30;
+}
+#stim {
+	position: absolute;
+	padding-left: 10px;
+	margin-top: 600px;
+	margin-left: 10px;
+	width: 790px;
+	border: 1px orange solid;
+    font-size: 50;
+}
+span.bold {color: FF6600;  font-weight: bold; text-transform: uppercase}
+span.none {color: 000000; text-transform: lowercase}
+	</CSS>
+</INFO>
+
+<DEFS>
+    <DEFBLOCK name="ZOFF" flag="A" cond="pre" hw="acq_audio" nreps="1" rand="none" dur="4" isi="0" nargs="6">
+        <ARG id="1">record</ARG>
+        <ARG id="2">Test-trials</ARG>
+        <ARG id="3"><![CDATA[<span class="bold">]]></ARG>
+        <ARG id="4"><![CDATA[</span>]]></ARG>
+        <ARG id="5"><![CDATA[<span class="none">]]></ARG>
+        <ARG id="6"><![CDATA[</span>]]></ARG>
+        <PAUSE prompt="Lexical Stress">
+            <![CDATA[ 
+                <div id="instr"><center><b>Part 1: Sentences</b><br><i>$2</i></center></div>
+            ]]>
+        </PAUSE>
+        <PAUSE prompt="Instruction">
+            <![CDATA[ 
+                <div id="instr"><center><i>Casual<br>Like talking with a friend.<br>Stress on the capitalized (orange) word.</i></center></div>
+            ]]>
+        </PAUSE>
+        <TEMPLATE type="$1" tid="1">
+        <STIMULI>
+            <HTML>
+                <![CDATA[ 
+                    <div id="stim">
+                        @0<br>
+                    </div>
+                    <div id="instr">
+                        <FONT color="A00000" /><i><b>STRESS</b> the orange word</i><FONT color="000000" /><br>
+                        Speak smoothly and fluently.
+                    </div>
+                ]]>
+            </HTML>
+        </STIMULI>
+        </TEMPLATE>
+        <TOKEN tid="1" mnemonic="obJECT1">The $3lawyer$4 did not $5object$6 to it.</TOKEN>
+        <TOKEN tid="1" mnemonic="OBject2">That $5object$6 is on the $3TABLE$4.</TOKEN>
+        <TOKEN tid="1" mnemonic="subJECT1">Do not $5subject$6 them to $3PAIN$4.</TOKEN>
+        <TOKEN tid="1" mnemonic="SUBject2">That $5subject$6 is $3HARD$4.</TOKEN>
+        <TOKEN tid="1" mnemonic="susPECT1">I $5suspect$6 he $3LIKED$4 it.</TOKEN>
+        <TOKEN tid="1" mnemonic="SUSpect2">The $5suspect$6 is $3FINALLY$4 in jail.</TOKEN>
+        <TOKEN tid="1" mnemonic="deFECT1">Do not $5defect$6 just $3YET$4.</TOKEN>
+        <TOKEN tid="1" mnemonic="DEfect2">His car has a $5defect$6 in the $3ENGINE$4</TOKEN>
+        <TOKEN tid="1" mnemonic="upSET1">He was $5upset$6 by the $3NEWS$4</TOKEN>
+        <TOKEN tid="1" mnemonic="UPset2">The $3TEAM$4 suffered a big $5upset$6 last week</TOKEN>
+        <TOKEN tid="1" mnemonic="diGEST1">Eat $3SLOWLY$4 and $5digest$6 your food</TOKEN>
+        <TOKEN tid="1" mnemonic="DIgest2">I $3PREFER$4 the news $5digest$6 overall</TOKEN>
+        <TOKEN tid="1" mnemonic="reJECT1">$3PLEASE$4 do not $5reject$6 the plan</TOKEN>
+        <TOKEN tid="1" mnemonic="REject2">That $5reject$6 should be $3DISCARDED$4</TOKEN>
+    </DEFBLOCK>
+
+    <REDEFBLOCK oldname="ZOFF" newname="ZON">
+        <ARG id="3"><![CDATA[<span class="none">]]></ARG>
+        <ARG id="5"><![CDATA[<span class="bold">]]></ARG>
+    </REDEFBLOCK>
+
+    <REDEFBLOCK oldname="ZOFF" newname="PA" nreps="5" rand="randomize"></REDEFBLOCK>
+    <REDEFBLOCK oldname="ZON"  newname="PB" nreps="5"></REDEFBLOCK>
+
+    <DEFBLOCK name="cal" cond="XX" flag="A" hw="acq_audio">
+        <PAUSE><![CDATA[ <div id="stim">SPL Calibration<div>]]></PAUSE>
+        <PAUSE><![CDATA[ <div id="stim">Mic Calibration<div>]]></PAUSE>
+        <TOKEN mnemonic="miccal"><![CDATA[ <div id="stim">Mic cal in progress<div>]]></TOKEN>
+    </DEFBLOCK>
+</DEFS>
+
+<ORDER>
+    <SECTION>
+        <BLOCK>cal</BLOCK>
+    </SECTION>
+    <SECTION>
+        <BLOCK>ZOFF</BLOCK>
+    </SECTION>
+    <SECTION nreps="3">
+        <BLOCK>PA</BLOCK>
+    </SECTION>
+    <SECTION>
+        <BLOCK>ZON</BLOCK>
+    </SECTION>
+    <SECTION nreps="3">
+        <BLOCK>PB</BLOCK>
+    </SECTION>
+</ORDER>
+</EXPERIMENT>

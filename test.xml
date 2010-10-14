@@ -1,0 +1,101 @@
+<EXPERIMENT>
+
+<REM>TEST.XML  - test stimulus list description file</REM>
+
+<REM>INFO section:  global experiment parameters</REM>
+<INFO>
+	<STUDYID>HS13T1a</STUDYID>
+	<SUBJECTID>003</SUBJECTID>
+	<EXTRA>
+		<SEX>M</SEX>
+		<REM>extend as necessary; place into userdata of each recorded token</REM>
+	</EXTRA>
+	<REM>CSS section global to experiment</REM>
+	<CSS>
+#instr {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 800px;
+	height: 100px; 
+	border: 1px orange solid;
+}
+#stim {
+	position: absolute;
+	padding-left: 10px;
+	margin-top: 300px;
+	margin-left: 10px;
+	width: 790px;
+	border: 1px orange solid;
+}
+	</CSS>
+</INFO>
+
+<REM>DEFS section:  block definitions</REM>
+<DEFS>
+	<REM>two reps each of heed, hid, head; randomized permutation</REM>
+	<DEFBLOCK name="A" flag="A" cond="N" hw="acq_audio" nreps="2" rand="randomize" dur="1">
+        <PAUSE prompt="Close ventilation"><![CDATA[<div id="instr">Starting test</div>]]></PAUSE>
+		<TEMPLATE tid="1" type="record" nargs="1">
+		<STIMULI>
+			<HTML>
+				<![CDATA[<div id="stim">Say <FONT color="@1" />@0<FONT color="000000" /> for me </div>]]>
+			</HTML>
+		</STIMULI>
+		</TEMPLATE>
+		<TOKEN tid="1" arg1="AF0000">heed</TOKEN>
+		<TOKEN tid="1" arg1="0000AF">hid</TOKEN>
+		<TOKEN tid="1" arg1="00AF00">head</TOKEN>
+	</DEFBLOCK>
+</DEFS>
+
+<REM>ORDER section:  experiment layout</REM>
+<ORDER>
+	<REM>PAUSE trial; set duration</REM>
+	<SECTION>
+		<TRIAL prompt="pause 1" type="PAUSE" dur="1.25">
+			<STIMULI>
+				<HTML>
+					<![CDATA[<CENTER>pausing...</CENTER>]]>
+				</HTML>
+			</STIMULI>
+		</TRIAL>
+		<TRIAL prompt="dummy" type="DUMMY" dur="1">
+			<STIMULI>
+				<HTML>
+					<![CDATA[<CENTER>DUMMY trial</CENTER>]]>
+				</HTML>
+			</STIMULI>
+		</TRIAL>
+	</SECTION>
+	<REM>Expand block A</REM>
+	<SECTION>
+		<BLOCK>A</BLOCK>
+	</SECTION>
+	<REM>gratuitous extra trial</REM>
+	<SECTION>
+		<TRIAL mnemonic="extra" prompt="extra" type="RECORD">
+			<STIMULI record="0" delay="500">
+				<HTML>
+					<![CDATA[<CENTER>Extra Trial</CENTER>]]>
+				</HTML>
+				<EXTRA>
+					<HANDLER>PlayAudio</HANDLER>
+					<CONTENT>poschmu.wav</CONTENT>
+				</EXTRA>
+			</STIMULI>
+			<STIMULI record="1" delay="1000">
+				<HTML>
+					<![CDATA[<CENTER>RECORDING</CENTER>]]>
+				</HTML>
+			</STIMULI>
+			<STIMULI record="0" delay="2000">
+				<HTML>
+					<![CDATA[<CENTER>post record display</CENTER>]]>
+				</HTML>
+			</STIMULI>
+		</TRIAL>
+	</SECTION>
+</ORDER>
+
+</EXPERIMENT>
