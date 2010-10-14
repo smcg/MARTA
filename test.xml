@@ -75,21 +75,26 @@
 	<REM>gratuitous extra trial</REM>
 	<SECTION>
 		<TRIAL mnemonic="extra" prompt="extra" type="RECORD">
-			<STIMULI record="0" delay="500">
+			<STIMULI record="0">
 				<HTML>
-					<![CDATA[<CENTER>Extra Trial</CENTER>]]>
+					<![CDATA[<CENTER>pre audio display</CENTER>]]>
+				</HTML>
+			</STIMULI>
+			<STIMULI record="0" delay="2000">
+				<HTML>
+					<![CDATA[<CENTER>audio output</CENTER>]]>
 				</HTML>
 				<EXTRA>
 					<HANDLER>PlayAudio</HANDLER>
 					<CONTENT>poschmu.wav</CONTENT>
 				</EXTRA>
 			</STIMULI>
-			<STIMULI record="1" delay="1000">
+			<STIMULI record="1" delay="4000" dur="1">
 				<HTML>
 					<![CDATA[<CENTER>RECORDING</CENTER>]]>
 				</HTML>
 			</STIMULI>
-			<STIMULI record="0" delay="2000">
+			<STIMULI record="0" delay="5000">
 				<HTML>
 					<![CDATA[<CENTER>post record display</CENTER>]]>
 				</HTML>

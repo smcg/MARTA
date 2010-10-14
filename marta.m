@@ -26,7 +26,7 @@ switch action,
 
 % ABOUT  - blurb
 	case 'ABOUT',
-		vers = 'mkt  06/19/08 v0.11';
+		vers = 'mkt  05/20/08 v0.09';
 		s = {'MARTA  - DAQ-based acquisition tool';
 			''
 			['  ' vers]};
@@ -216,8 +216,9 @@ switch action,
 			if completed,
 				stims = state.EXPT.TRIALS(state.CURIDX).STIM;
 				for si = 1 : length(stims),
-					if ~isempty(stims(si).EXTRA) && ~isempty(stims(si).EXTRA.HANDLER),
-						feval(stims(si).EXTRA.HANDLER,'COMPLETED');		% signal stimulus handler (active or not!)
+					s = stims(si);
+					if isfield(s,'EXTRA') && ~isempty(s.EXTRA) && ~isempty(s.EXTRA.HANDLER),
+						feval(s.EXTRA.HANDLER,'COMPLETED');		% signal stimulus handler (active or not!)
 					end;
 				end;
 			end;
@@ -256,6 +257,7 @@ switch action,
 					set(fh, 'userData', state);
 					set(state.TIMER,'StartDelay',state.ISI,'TimerFcn',{@ISITimeOut,fh});
 					start(state.TIMER);
+					return;
 				end;
 			else,			% step trial
 				SetTrial(fh, [], 1);

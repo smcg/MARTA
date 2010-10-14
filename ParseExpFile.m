@@ -240,10 +240,11 @@ for b0=1:numel(BLOCK),
                 try trial.STIM(s0).RECORD = token.stimuli(s0).ATTRIBUTE.record; catch CTAwarning('missing record'); end
                 try trial.STIM(s0).HTML  = cat(2,prehtml,token.stimuli(s0).HTML.CDATA_SECTION,posthtml); catch CTAwarning('missing html'); end
                 try
-                    for e0=1:numel(token.stimuli(s0).EXTRA),
+%                     for e0=1:numel(token.stimuli(s0).EXTRA),
+				e0 = 1; % ONLY 1 extra allowed
                         try trial.STIM(s0).EXTRA(e0).HANDLER = token.stimuli(s0).EXTRA(e0).HANDLER; catch CTAwarning('missing handler'); end
                         try trial.STIM(s0).EXTRA(e0).CONTENT = token.stimuli(s0).EXTRA(e0).CONTENT; catch CTAwarning('missing content'); end
-                    end
+%                     end
                 catch
                     CTAwarning('missing extra');
                 end
@@ -473,10 +474,11 @@ for s0=1:numel(trialinfo.STIMULI)
     try trial.STIM(s0).RECORD = trialinfo.STIMULI(s0).ATTRIBUTE.record; catch CTAwarning('missing record'); end
     try trial.STIM(s0).HTML  = cat(2,CTAinfo.prehtml,trialinfo.STIMULI(s0).HTML.CDATA_SECTION,CTAinfo.posthtml); catch CTAwarning('missing html'); end
     try
-        for e0=1:numel(trialinfo.STIMULI(s0).EXTRA),
+		e0 = 1;
+%         for e0=1:numel(trialinfo.STIMULI(s0).EXTRA),
             try trial.STIM(s0).EXTRA(s0).HANDLER = trialinfo.STIMULI(s0).EXTRA(e0).HANDLER; catch CTAwarning('missing handler'); end
             try trial.STIM(s0).EXTRA(s0).CONTENT = trialinfo.STIMULI(s0).EXTRA(e0).CONTENT; catch CTAwarning('missing content'); end
-        end
+%         end
     catch
         CTAwarning('missing extra');
     end

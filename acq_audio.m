@@ -16,6 +16,7 @@ switch action,
 
 % INIT
 	case 'INIT',
+        warning('off','MATLAB:HandleGraphics:ObsoletedProperty:JavaFrame');
 		hw = HWInit(varargin{1},varargin{2});
 		
 % LAYOUT  - update stored window positions
@@ -105,15 +106,16 @@ lwH = figure('name','LEVEL', ...
 			'keyPressFcn','figure(get(gcbf,''userdata''))', ...
 			'userData', fh, ...
 			'closeRequestFcn', '');
-jh = getjframe(lwH);
-jh.setAlwaysOnTop(true);
 xx = [.04:.0925:1];
 c = 'bbbbgggrrr';
+ah = axes;
 for k = 1 : 10,
 	x = [xx(k) xx(k+1)-.01];
 	lbH(k) = patch([x(1) x(1) x(2) x(2)],[.05 .05 .05 .05],c(k),'edgecolor',c(k));
 end;
-set(gca,'xlim',[0 1],'ylim',[0 1],'xtick',[],'ytick',[],'box','on');
+set(ah,'xlim',[0 1],'ylim',[0 1],'xtick',[],'ytick',[],'box','on');
+jh = getjframe(lwH);
+jh.setAlwaysOnTop(true);
 %set([pwH lwH],'handleVisibility','callback');
 
 %% return configuration
