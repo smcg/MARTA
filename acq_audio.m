@@ -305,6 +305,7 @@ if length(lh) > 4,		% recording in progress
 % non-logged plotting in progress
 else,
 	s = peekdata(AI, AI.SamplesPerTrigger);
+	s = s(:,1);
 	ph = lh{2}; w = lh{3}; rmsMap = lh{4}; lh = lh{1};
 	if ~ishandle(lh), return; end;
 	set(lh,'ydata',s);
@@ -356,3 +357,13 @@ else,
 end;
 set(progressH,'xdata',[0 0 1 1]*sampsAcquired/nSamps,'visible','on');
 marta('RECORD','FINALIZE',(sampsAcquired==nSamps));
+vel = get(lbh(1),'userData');		% update subject level bars
+for k = 1 : 10,
+	if k <= level,
+		y = [.05 .95 .95 .05];
+	else,
+		y = [.05 .05 .05 .05];
+	end;
+	set(lbh(k), 'ydata', y);
+end;
+if sampsAcquired == nSa

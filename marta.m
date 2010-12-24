@@ -1,9 +1,9 @@
 function r = marta(action, varargin)
 %MARTA  - DAQ-based acquisition tool
 %
-%	usage:  marta(expFile, ...)
+%	usage:  marta(trials,info, ...)
 %
-% EXPFILE specifies the experiment in XML format
+% TRIALS,INFO specify the experiment structure; from PARSEEXPFILE
 %
 % Recognized 'NAME',VALUE parameters (defaults shown within {}):
 %	CONFIG   - saved configuration variable
@@ -15,6 +15,7 @@ function r = marta(action, varargin)
 %	NCHAN    - number of sampled channels
 
 % mkt 03/08
+% mkt 11/10 load trials, info directory
 
 %% branch by action
 if nargin < 1,
@@ -26,7 +27,7 @@ switch action,
 
 % ABOUT  - blurb
 	case 'ABOUT',
-		vers = 'mkt  05/20/08 v0.09';
+		vers = 'mkt  11/23/10 v0.091';
 		s = {'MARTA  - DAQ-based acquisition tool';
 			''
 			['  ' vers]};
@@ -328,7 +329,7 @@ switch action,
 			end;	% general case
 		end;	% init recording
 		
-% DEFAULT  - assume action holds name of expFile		
+% DEFAULT  - assume action holds trials for initialization		
 	otherwise,
 		Initialize(action, varargin{:})
 
@@ -379,7 +380,7 @@ if ishandle(cfg), delete(cfg); end;
 %% ===== Initialize ============================================================
 % perform initialization sequence
 
-function Initialize(expFile, varargin)
+function Initialize(trials, varargin)
 
 set(0,'ShowHiddenHandles', 'on');
 fh = findobj('tag','MARTA1');
@@ -408,7 +409,8 @@ defCfg.HWCFG = {defHWcfg};
 
 %% parse args
 cfg = []; rms = []; spl = []; target = []; rng = []; sRate = []; nChan = [];
-for ai = 2 : 2 : length(varargin),
+info = varargin{1};
+for ai = 3 : 2 : length(varargin),
 	switch upper(varargin{ai-1}),
 		case 'CONFIG', cfg = varargin{ai};
 		case 'RMS', rms = varargin{ai};
@@ -458,25 +460,13 @@ if ~isempty(nChan),
 	end;
 end;
 
-%% parse the experiment file
-[p,f,e] = fileparts(expFile);
-if isempty(e), e = '.xml'; expFile = fullfile(p,[f,e]); end;
-logFile = fullfile(p,[f,'.log']);
-expName = f;
+%% set up log file
+expt = struct('TRIALS',trials, 'INFO',info);
+logFile = info.EXTRA.LOGNAME;
+[p,expName] = fileparts(logFile);
 diary(logFile);		% start logging
 ls = char(ones(1,60)*61);
 fprintf('\n\n%s\n  %s initiated %s\n%s\n\n', ls, f, datestr(now),ls);
-if isempty(cfg.EXPT),
-	if ~exist(expFile,'file'),
-		error('experiment file %s not found', expFile);
-	end;
-	[trials,info] = ParseExpFile(expFile);
-	expt = struct('TRIALS',trials, 'INFO',info);
-else,
-	trials = cfg.EXPT.TRIALS;
-	info = cfg.EXPT.INFO;
-	expt = cfg.EXPT;
-end;
 trialList = {trials.FNAME};
 kk = setdiff([1:length(trials)],strmatch('RECORD',upper({trials.TYPE})));
 for k = kk,
@@ -1009,3 +999,10 @@ if ~isempty(html),
 end;
 browser.A.show;
 figure(fh);
+(html),
+	hdr = html(1:min([4,length(html)]));
+	if strcmp(hdr,'http') || strcmp(hdr,'file'),
+		browser.B.setCurrentLocation(html);
+	elseif strcmp(hdr,'text'),
+		browser.B.setHtmlText(html(8:end));
+	else,	% add pre/post forma
