@@ -85,13 +85,13 @@ for b0=1:numel(tree.DEFS.DEFBLOCK),
             else
                 BLOCK(b0).args(id).val = tree.DEFS.DEFBLOCK(b0).ARG(a0).CDATA_SECTION;
             end                
-         catch error('Missing arg id:%d content',id); 
+         catch ME, error('Missing arg id:%d content',id); 
          end
     end
     if BLOCK(b0).nargs ~= numel(unique(ids)),
         error('Mismatch between nargs and number of ARG elements')
     end
-    catch error('ARG: Missing attribute id'); end
+    catch ME, error('ARG: Missing attribute id'); end
     BLOCK(b0).id    = 0;
     BLOCK(b0).def       = tree.DEFS.DEFBLOCK(b0);
 end
@@ -113,6 +113,8 @@ for rd0=1:numel(tree.DEFS.REDEFBLOCK),
     try BLOCK(idx).rand      = tree.DEFS.REDEFBLOCK(rd0).ATTRIBUTE.rand; catch CTAwarning('Missing rand'); end
     try BLOCK(idx).dur       = tree.DEFS.REDEFBLOCK(rd0).ATTRIBUTE.dur; catch CTAwarning('Missing dur'); end
     try BLOCK(idx).isi       = tree.DEFS.REDEFBLOCK(rd0).ATTRIBUTE.isi; catch CTAwarning('Missing isi'); end
+    
+    try,
     for a0=1:numel(tree.DEFS.REDEFBLOCK(rd0).ARG),
          try id = tree.DEFS.REDEFBLOCK(rd0).ARG(a0).ATTRIBUTE.id; catch error('ARG: Missing attribute id'); end
          try 
@@ -127,6 +129,13 @@ for rd0=1:numel(tree.DEFS.REDEFBLOCK),
          catch
              CTAwarning('Missing arg%d content',a0);
          end
+    end
+    catch ME,
+        if strcmp(ME.message, 'Reference to non-existent field ''ARG''.'),
+            CTAwarning(ME.message)
+        else
+            rethrow(ME)
+        end
     end
 end
 
