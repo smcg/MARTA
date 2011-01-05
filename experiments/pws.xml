@@ -1,0 +1,313 @@
+<EXPERIMENT>
+<REM>Stuttering Pilot Study</REM>
+
+<INFO>
+	<STUDYID>SPS</STUDYID>
+	<SUBJECTID>001</SUBJECTID>
+	<EXTRA>
+		<SEX>M</SEX>
+	</EXTRA>
+	<CSS>
+        div.instr { position: absolute; text-align: center; margin-top: 20%; width: 99%; height: 80px; border: 0px orange solid; font-size: 60; } 
+        div.instr2 { position: absolute; text-align: center; margin-top: 10px; margin-left: 10px; 
+                     width: 800px; height: 100px; border: 0px orange solid; font-size: 30; } 
+        div.instr3 { position: absolute; text-align: center; margin-top: 20%; width: 99%; height: 100px; font-size: 60; } 
+        body { height: 100%; margin: 0; padding: 0; }
+        div.stim { position: absolute; width: 90%; left: 5%; top: 25%; border: 10px orange solid; text-align: center; line-height: 100px; font-size: 50; }
+        div.stim2 { position: absolute; width: 90%; left: 5%; top: 10%; border: 10px orange solid; text-align: center; line-height: 70px; font-size: 50; }
+        span.bold {color: FF6600; text-transform: uppercase; font-weight: bold; } span.bold2 {color: red; text-transform: uppercase; font-weight: bold; } 
+        span.normal {} p.big {line-height: 200%;}
+    </CSS>         
+</INFO>
+
+<DEFS>
+    <DEFBLOCK name="sent1prac" flag="A" cond="SS" hw="acq_audio" nreps="1" rand="none" dur="3" isi="0" nargs="1">
+        <ARG id="1">record</ARG>
+        <PAUSE prompt="Instruction">
+            <![CDATA[  
+                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+            
+            ]]> 
+        </PAUSE>        
+        <TEMPLATE type="$1" tid="1">
+            <STIMULI>
+                <HTML>
+                    <![CDATA[ 
+                    <div class="stim">
+                        She said @0 for me.<br>
+                    </div>
+                ]]>
+                </HTML>
+            </STIMULI>
+        </TEMPLATE>
+        <TOKEN tid="1" mnemonic="carpet">carpet</TOKEN>
+        <TOKEN tid="1" mnemonic="catnip">catnip</TOKEN>
+        <TOKEN tid="1" mnemonic="topic">topic</TOKEN>
+        <TOKEN tid="1" mnemonic="teacup">teacup</TOKEN>
+        <TOKEN tid="1" mnemonic="pocket">pocket</TOKEN>
+        <TOKEN tid="1" mnemonic="poetic">poetic</TOKEN>
+    </DEFBLOCK>
+    
+    <DEFBLOCK name="sent2prac" flag="A" cond="FS" hw="acq_audio" nreps="1" rand="none" dur="6" isi="0" nargs="1">
+        <ARG id="1">record</ARG>
+        <PAUSE prompt="Instruction">
+            <![CDATA[  
+                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+            
+            ]]> 
+        </PAUSE>        
+        <TEMPLATE type="$1" tid="1">
+            <STIMULI>
+                <HTML>
+                    <![CDATA[ 
+                    <div class="stim">
+                        @0<br>
+                    </div>
+                ]]>
+                </HTML>
+            </STIMULI>
+        </TEMPLATE>
+        <TOKEN tid="1" mnemonic="F2S2SS">I said a topic and a packet again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S2SL">I told him she said a topic and a packet again when she saw him yesterday.</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S3SS">I said a catapult and a petticoat again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S3SL">I told him she said a catapult and a petticoat again when she saw him yesterday.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S2SS">I said a topic and a packet and a carpet again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S2SL">I told him she said a topic and a packet and a carpet again when she saw him yesterday.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S3SS">I said a catapult and a petticoat and a transcript again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S3SL">I told him she said a catapult and a petticoat and a transcript again when she saw him yesterday.</TOKEN>
+    </DEFBLOCK>
+        
+    <DEFBLOCK name="smithprac" flag="A" cond="SR" hw="acq_audio" nreps="1" rand="none" dur="6" isi="0" nargs="1">
+        <ARG id="1">record</ARG>
+        <PAUSE prompt="Instruction">
+            <![CDATA[  
+                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+            
+            ]]> 
+        </PAUSE>        
+        <TEMPLATE type="$1" tid="1">
+            <STIMULI>
+                <HTML>
+                    <![CDATA[ 
+                    <div class="stim">
+                        @0<br>
+                    </div>
+                ]]>
+                </HTML>
+            </STIMULI>
+        </TEMPLATE>
+        <TOKEN tid="1" mnemonic="BASE">Buy Bobby a puppy.</TOKEN>
+        <TOKEN tid="1" mnemonic="C1">You buy Bobby a puppy and I buy Matt toys.</TOKEN>
+        <TOKEN tid="1" mnemonic="C2">He wants to buy Bobby a puppy at my store.</TOKEN>
+        <TOKEN tid="1" mnemonic="C3">They asked us to buy Bobby a puppy this week.</TOKEN>
+        <TOKEN tid="1" mnemonic="C4">You buy Bobby a puppy now if he wants one.</TOKEN>
+        <TOKEN tid="1" mnemonic="L1">One two three buy Bobby a puppy five six seven.</TOKEN>
+        <TOKEN tid="1" mnemonic="L2">Sunday Sunday buy Bobby a puppy Sunday Sunday.</TOKEN>
+    </DEFBLOCK>
+    
+    <REDEFBLOCK oldname="sent2prac" newname="sent2test" nreps="1" rand="blockrandom">
+    </REDEFBLOCK>
+    <REDEFBLOCK oldname="sent1prac" newname="sent1test" nreps="1" rand="blockrandom">
+    </REDEFBLOCK>
+    
+    <REDEFBLOCK oldname="smithprac" newname="smithtest" nreps="1" rand="blockrandom">
+    </REDEFBLOCK>
+</DEFS>
+
+<ORDER>
+        <SECTION>
+            <TRIAL type="pause" prompt="WELCOME" hw="acq_audio">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[ 
+                            <div class="instr3">WELCOME</div>
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Bite plane">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Palate Trace">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Mic Calibration">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Smith replication">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Practice Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+        <BLOCK>smithprac</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Single words in carrier">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Practice Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+          <BLOCK>sent1prac</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Focus sentences">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Practice Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+        <BLOCK>sent2prac</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Smith replication">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Test Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION nreps="10">
+        <BLOCK>smithtest</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Single words in carrier">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Test Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION nreps="10">
+        <BLOCK>sent1test</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Focus sentences">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Test Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION nreps="15">
+          <BLOCK>sent2test</BLOCK>
+        </SECTION>
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Passage reading 1">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[<div class="instr3"><center><i><br><p>Passage Reading<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+            <TRIAL type="pause" prompt="Instruction">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[
+                            <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+      <TRIAL mnemonic="passage1" prompt="passage1" type="RECORD" flag="A" dur="30" cond="PR">
+        <STIMULI><HTML><![CDATA[<div class="stim2">Do you like amusement parks?  Well, I sure do.  To amuse myself, I went twice last spring.  
+        My most MEMORABLE moment was riding on the Caterpillar, which is a gigantic rollercoaster high above the ground.  When I saw how high 
+        the Caterpillar rose into the bright blue sky I knew it was for me.  After waiting in line for thirty minutes, I made it to the front 
+        where the man measured my height to see if I was tall enough.  I gave the man my coins, asked for change, and jumped on the cart.  
+        </P>
+        </CENTER>]]></HTML></STIMULI>
+      </TRIAL>
+      <TRIAL mnemonic="passage2" prompt="passage2" type="RECORD" flag="A" dur="30" cond="PR">
+        <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went SO high I could see the lake nearby.  Boy was I SCARED!  
+        I thought to myself, "There's no turning back now."  People were so scared they screamed as we swiftly zoomed fast, fast, and faster 
+        along the tracks.  As quickly as it started, the Caterpillar came to a stop.  Unfortunately, it was time to pack the car and drive home.  
+        That night I dreamt of the wild ride on the Caterpillar.  Taking a trip to the amusement park and riding on the Caterpillar was my 
+        MOST memorable moment ever!</P>
+        </CENTER>]]></HTML></STIMULI>
+      </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Passage reading 1">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[<div class="instr3"><center><i><br><p>Speak freely<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+            <TRIAL type="pause" prompt="Instruction">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[
+                            <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+      <TRIAL mnemonic="freeform" prompt="freeform" type="RECORD" flag="A" cond="FF">
+        <STIMULI><HTML><![CDATA[<div class="stim"><CENTER>FreeForm</CENTER>]]></HTML></STIMULI>
+      </TRIAL>
+        </SECTION>
+</ORDER>
+</EXPERIMENT>
