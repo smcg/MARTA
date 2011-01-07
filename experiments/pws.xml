@@ -6,14 +6,15 @@
 	<SUBJECTID>001</SUBJECTID>
 	<EXTRA>
 		<SEX>M</SEX>
+                <LOGFILE>SPS_001.log</LOGFILE>
 	</EXTRA>
 	<CSS>
-        div.instr { position: absolute; text-align: center; margin-top: 20%; width: 99%; height: 80px; border: 0px orange solid; font-size: 60; } 
-        div.instr2 { position: absolute; text-align: center; margin-top: 10px; margin-left: 10px; 
+        div.instr { position: absolute; text-align: center; top: 50%; width: 99%; height: 80px; border: 0px orange solid; font-size: 60; } 
+        div.instr2 { position: absolute; text-align: center; top: 50%; margin-left: 10px; 
                      width: 800px; height: 100px; border: 0px orange solid; font-size: 30; } 
-        div.instr3 { position: absolute; text-align: center; margin-top: 20%; width: 99%; height: 100px; font-size: 60; } 
+        div.instr3 { position: absolute; text-align: center; top: 50%; width: 99%; height: 100px; font-size: 60; } 
         body { height: 100%; margin: 0; padding: 0; }
-        div.stim { position: absolute; width: 90%; left: 5%; top: 25%; border: 10px orange solid; text-align: center; line-height: 100px; font-size: 50; }
+        div.stim { position: absolute; width: 90%; left: 5%; top: 65%; border: 10px orange solid; text-align: center; line-height: 100px; font-size: 50; }
         div.stim2 { position: absolute; width: 90%; left: 5%; top: 10%; border: 10px orange solid; text-align: center; line-height: 70px; font-size: 50; }
         span.bold {color: FF6600; text-transform: uppercase; font-weight: bold; } span.bold2 {color: red; text-transform: uppercase; font-weight: bold; } 
         span.normal {} p.big {line-height: 200%;}
@@ -21,11 +22,11 @@
 </INFO>
 
 <DEFS>
-    <DEFBLOCK name="sent1prac" flag="A" cond="SS" hw="acq_audio" nreps="1" rand="none" dur="3" isi="0" nargs="1">
+    <DEFBLOCK name="sent1prac" flag="A" cond="SS" hw="acq_audio" nreps="2" rand="none" dur="3" isi="0" nargs="1">
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
             
             ]]> 
         </PAUSE>        
@@ -48,11 +49,11 @@
         <TOKEN tid="1" mnemonic="poetic">poetic</TOKEN>
     </DEFBLOCK>
     
-    <DEFBLOCK name="sent2prac" flag="A" cond="FS" hw="acq_audio" nreps="1" rand="none" dur="6" isi="0" nargs="1">
+    <DEFBLOCK name="sent2prac" flag="A" cond="FS" hw="acq_audio" nreps="2" rand="none" dur="7" isi="0" nargs="1">
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
             
             ]]> 
         </PAUSE>        
@@ -76,12 +77,37 @@
         <TOKEN tid="1" mnemonic="F3S3SS">I said a catapult and a petticoat and a transcript again.</TOKEN>
         <TOKEN tid="1" mnemonic="F3S3SL">I told him she said a catapult and a petticoat and a transcript again when she saw him yesterday.</TOKEN>
     </DEFBLOCK>
-        
-    <DEFBLOCK name="smithprac" flag="A" cond="SR" hw="acq_audio" nreps="1" rand="none" dur="6" isi="0" nargs="1">
+
+    <DEFBLOCK name="sent3prac" flag="A" cond="FS" hw="acq_audio" nreps="2" rand="none" dur="8" isi="0" nargs="1">
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
+            
+            ]]> 
+        </PAUSE>        
+        <TEMPLATE type="$1" tid="1">
+            <STIMULI>
+                <HTML>
+                    <![CDATA[ 
+                    <div class="stim">
+                        @0<br>
+                    </div>
+                ]]>
+                </HTML>
+            </STIMULI>
+        </TEMPLATE>
+        <TOKEN tid="1" mnemonic="F2S4SS">I said a capacity and a caterpillar again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S4SL">I told him she said a capacity and a caterpillar again when she saw him yesterday.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S4SS">I said a capacity and a caterpillar and a capability again.</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S4SL">I told him she said a capacity and a caterpillar and a capability again when she saw him yesterday.</TOKEN>
+    </DEFBLOCK>
+
+    <DEFBLOCK name="smithprac" flag="A" cond="SR" hw="acq_audio" nreps="2" rand="none" dur="6" isi="0" nargs="1">
+        <ARG id="1">record</ARG>
+        <PAUSE prompt="Instruction">
+            <![CDATA[  
+                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
             
             ]]> 
         </PAUSE>        
@@ -107,7 +133,7 @@
     
     <REDEFBLOCK oldname="sent2prac" newname="sent2test" nreps="1" rand="blockrandom">
     </REDEFBLOCK>
-    <REDEFBLOCK oldname="sent1prac" newname="sent1test" nreps="1" rand="blockrandom">
+    <REDEFBLOCK oldname="sent1prac" newname="sent1test" nreps="2" rand="blockrandom">
     </REDEFBLOCK>
     
     <REDEFBLOCK oldname="smithprac" newname="smithtest" nreps="1" rand="blockrandom">
@@ -121,28 +147,6 @@
                     <HTML>
                         <![CDATA[ 
                             <div class="instr3">WELCOME</div>
-                        ]]> 
-                    </HTML>
-                </STIMULI>
-            </TRIAL>
-        </SECTION>
-        <SECTION>
-            <TRIAL type="pause" prompt="Bite plane">
-                <STIMULI>
-                    <HTML>
-                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
-		
-                        ]]> 
-                    </HTML>
-                </STIMULI>
-            </TRIAL>
-        </SECTION>
-        <SECTION>
-            <TRIAL type="pause" prompt="Palate Trace">
-                <STIMULI>
-                    <HTML>
-                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
-		
                         ]]> 
                     </HTML>
                 </STIMULI>
@@ -206,6 +210,45 @@
         </SECTION>
 
         <SECTION>
+            <TRIAL type="pause" prompt="Focus sentences (4syll)">
+                <STIMULI>
+                    <HTML>
+                      <![CDATA[ 
+                               <div class="instr"><center><b>Short sentences</b><br><i>Practice Trials</i></center></div>
+                      ]]>
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+        <BLOCK>sent3prac</BLOCK>
+        </SECTION>
+
+
+        <SECTION>
+            <TRIAL type="pause" prompt="Bite plane">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Palate Trace">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+
+        <SECTION>
             <TRIAL type="pause" prompt="Smith replication">
                 <STIMULI>
                     <HTML>
@@ -225,13 +268,13 @@
                 <STIMULI>
                     <HTML>
                       <![CDATA[ 
-                               <div class="instr"><center><b>Short sentences</b><br><i>Test Trials</i></center></div>
+                               <div class="instr"><center><b>Short Sentences</b><br><i>Test Trials</i></center></div>
                       ]]>
                     </HTML>
                 </STIMULI>
             </TRIAL>
         </SECTION>
-        <SECTION nreps="10">
+        <SECTION nreps="5">
         <BLOCK>sent1test</BLOCK>
         </SECTION>
 
@@ -264,12 +307,12 @@
                 <STIMULI>
                     <HTML>
                         <![CDATA[
-                            <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                            <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
                         ]]> 
                     </HTML>
                 </STIMULI>
             </TRIAL>
-      <TRIAL mnemonic="passage1" prompt="passage1" type="RECORD" flag="A" dur="30" cond="PR">
+      <TRIAL mnemonic="passage1" prompt="passage1" type="RECORD" flag="A" dur="60" cond="PR">
         <STIMULI><HTML><![CDATA[<div class="stim2">Do you like amusement parks?  Well, I sure do.  To amuse myself, I went twice last spring.  
         My most MEMORABLE moment was riding on the Caterpillar, which is a gigantic rollercoaster high above the ground.  When I saw how high 
         the Caterpillar rose into the bright blue sky I knew it was for me.  After waiting in line for thirty minutes, I made it to the front 
@@ -277,7 +320,7 @@
         </P>
         </CENTER>]]></HTML></STIMULI>
       </TRIAL>
-      <TRIAL mnemonic="passage2" prompt="passage2" type="RECORD" flag="A" dur="30" cond="PR">
+      <TRIAL mnemonic="passage2" prompt="passage2" type="RECORD" flag="A" dur="60" cond="PR">
         <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went SO high I could see the lake nearby.  Boy was I SCARED!  
         I thought to myself, "There's no turning back now."  People were so scared they screamed as we swiftly zoomed fast, fast, and faster 
         along the tracks.  As quickly as it started, the Caterpillar came to a stop.  Unfortunately, it was time to pack the car and drive home.  
@@ -300,7 +343,7 @@
                 <STIMULI>
                     <HTML>
                         <![CDATA[
-                            <div class="instr3"><center><i><br><p>Ready?<br><p></p></i></center></div>
+                            <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
                         ]]> 
                     </HTML>
                 </STIMULI>
