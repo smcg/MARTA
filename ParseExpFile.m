@@ -281,12 +281,13 @@ for b0=1:numel(BLOCK),
 
         tokenlist = [tokenlist;trial(ones(token.nreps,1))];
     end
-    numtoks = numel(tokenlist);
-    idx = repmat((1:numtoks)',1,BLOCK(b0).nreps);
-    if ~strcmpi(BLOCK(b0).rand, 'none'),
-        idx = feval(BLOCK(b0).rand,idx);
-    end
-    BLOCK(b0).tokenlist = tokenlist(idx(:));
+    BLOCK(b0).tokenlist = tokenlist;
+    % numtoks = numel(tokenlist);
+    % idx = repmat((1:numtoks)',1,BLOCK(b0).nreps);
+    % if ~strcmpi(BLOCK(b0).rand, 'none'),
+    %     idx = feval(BLOCK(b0).rand,idx);
+    % end
+    % BLOCK(b0).tokenlist = tokenlist(idx(:));
 
     % Create pause trial for each block if requested
     if ~isempty(BLOCK(b0).pause),
@@ -368,6 +369,13 @@ lastidx         = 0;
 
 % add block id
 for b0=1:numel(FINALBLOCKS),
+    blocktokenlist = FINALBLOCKS(b0).tokenlist;
+    numtoks = numel(blocktokenlist);
+    idx = repmat((1:numtoks)',1,FINALBLOCKS(b0).nreps);
+    if ~strcmpi(FINALBLOCKS(b0).rand, 'none'),
+        idx = feval(FINALBLOCKS(b0).rand,idx);
+    end
+    FINALBLOCKS(b0).tokenlist = blocktokenlist(idx(:));
     for t0=1:numel(FINALBLOCKS(b0).tokenlist),
         if strcmpi(FINALBLOCKS(b0).tokenlist(t0).TYPE,'record'),
             FINALBLOCKS(b0).tokenlist(t0).FNAME = cat(2,FINALBLOCKS(b0).tokenlist(t0).FNAME,sprintf('_%02d',FINALBLOCKS(b0).id));
