@@ -11,23 +11,23 @@ function r = marta(action, varargin)
 %	SPL      - SPL level for sound calibration
 %	TARGET   - SPL target (dB)
 %	RANGE    - SPL range (dB)
-%	SRATE    - sampling rate (Hz)
-%	NCHAN    - number of sampled channels
+%	SRATE    - sampling rate (16000 Hz)
+%	NCHAN    - number of sampled channels {2}
 
 % mkt 03/08
-% mkt 11/10 load trials, info directory
 
 %% branch by action
 if nargin < 1,
 	eval('help marta');
 	return;
 end;
+if isstruct(action), trials = action; action = 'INIT'; end;
 
 switch action,
 
 % ABOUT  - blurb
 	case 'ABOUT',
-		vers = 'mkt  11/23/10 v0.091';
+		vers = 'mkt  01/11 v0.2';
 		s = {'MARTA  - DAQ-based acquisition tool';
 			''
 			['  ' vers]};
@@ -135,6 +135,7 @@ switch action,
 					return;
 				case 2,			% record
 					s = feval(hw.NAME, 'MIKECAL', hw, state);
+                    s = s(:,1);
 					wl = round(20*hw.CFG.SRATE/1000);
 					set(lh(1),'ydata',s);
 					rms = sqrt(filter(rectwin(wl)/wl,1,s.^2));
@@ -198,7 +199,11 @@ switch action,
 				t = timerfind('Tag','MARTA');
 				for k = 1 : length(t), stop(t(k)); end;
 				delete(t);
-				stims = state.EXPT.TRIALS(state.CURIDX).STIM;
+                if isempty(state.CURIDX), 
+                    stims = []; 
+                else,
+                    stims = state.EXPT.TRIALS(state.CURIDX).STIM;
+                end;
 				for si = 1 : length(stims),
 					if ~isempty(stims(si).EXTRA) && ~isempty(stims(si).EXTRA.HANDLER),
 						feval(stims(si).EXTRA.HANDLER,'ABORT');		% signal stimulus handler (active or not!)
@@ -215,7 +220,11 @@ switch action,
 				set(fh, 'userData', state);
 			end;
 			if completed,
-				stims = state.EXPT.TRIALS(state.CURIDX).STIM;
+                if isempty(state.CURIDX),
+                    stims = [];
+                else,
+                    stims = state.EXPT.TRIALS(state.CURIDX).STIM;
+                end;
 				for si = 1 : length(stims),
 					s = stims(si);
 					if isfield(s,'EXTRA') && ~isempty(s.EXTRA) && ~isempty(s.EXTRA.HANDLER),
@@ -329,9 +338,9 @@ switch action,
 			end;	% general case
 		end;	% init recording
 		
-% DEFAULT  - assume action holds trials for initialization		
+% DEFAULT  - assume action holds name of expFile		
 	otherwise,
-		Initialize(action, varargin{:})
+		Initialize(trials, varargin{:})
 
 end;
 
@@ -392,12 +401,12 @@ defHTML = 'text://<HTML><CENTER style="font-family:Arial;font-size:64;font-weigh
 
 defHWcfg = struct('HW', 'acq_audio', ...		% default acquisition handler
 					'ADAPTOR', 'winsound', ...	% default acquisition hw
-					'NCHAN', 1, ...				% number of channels
+					'NCHAN', 2, ...				% number of channels
 					'RMS', [], ...				% RMS -> SPL mapping
 					'SPL', [], ...
 					'TARGET', [], ...			% range checking
 					'RANGE', [], ...
-					'SRATE', 48000);			% sampling rate (Hz)
+					'SRATE', 16000);			% sampling rate (Hz)
 				
 defCfg = struct('DUR', 3, ...					% duration (secs)
 				'ISI', 0, ...					% ISI (secs)
@@ -460,13 +469,36 @@ if ~isempty(nChan),
 	end;
 end;
 
-%% set up log file
-expt = struct('TRIALS',trials, 'INFO',info);
+%% parse the experiment file
+% [p,f,e] = fileparts(expFile);
+% if isempty(e), e = '.xml'; expFile = fullfile(p,[f,e]); end;
+% logFile = fullfile(p,[f,'.log']);
+% expName = f;
+
+if isempty(cfg.EXPT),
+	expt = struct('TRIALS',trials, 'INFO',info);
+else,
+	if isempty(trials), trials = cfg.EXPT.TRIALS; end;
+	info = cfg.EXPT.INFO;
+	expt = cfg.EXPT;
+end;
 logFile = info.EXTRA.LOGNAME;
 [p,expName] = fileparts(logFile);
+
 diary(logFile);		% start logging
 ls = char(ones(1,60)*61);
-fprintf('\n\n%s\n  %s initiated %s\n%s\n\n', ls, f, datestr(now),ls);
+fprintf('\n\n%s\n  %s initiated %s\n%s\n\n', ls, expName, datestr(now),ls);
+% if isempty(cfg.EXPT),
+% 	if ~exist(expFile,'file'),
+% 		error('experiment file %s not found', expFile);
+% 	end;
+% 	[trials,info] = ParseExpFile(expFile);
+% 	expt = struct('TRIALS',trials, 'INFO',info);
+% else,
+% 	trials = cfg.EXPT.TRIALS;
+% 	info = cfg.EXPT.INFO;
+% 	expt = cfg.EXPT;
+% end;
 trialList = {trials.FNAME};
 kk = setdiff([1:length(trials)],strmatch('RECORD',upper({trials.TYPE})));
 for k = kk,
@@ -999,10 +1031,3 @@ if ~isempty(html),
 end;
 browser.A.show;
 figure(fh);
-(html),
-	hdr = html(1:min([4,length(html)]));
-	if strcmp(hdr,'http') || strcmp(hdr,'file'),
-		browser.B.setCurrentLocation(html);
-	elseif strcmp(hdr,'text'),
-		browser.B.setHtmlText(html(8:end));
-	else,	% add pre/post forma

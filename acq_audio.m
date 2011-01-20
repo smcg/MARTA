@@ -82,7 +82,7 @@ pwH = figure('name','ACQ_AUDIO', ...
 			'userData', fh, ...
 			'closeRequestFcn', '');
 paH = axes('position',[.08 .11 .78 .83]);		% waveform
-set(paH, 'xtick',[],'ytick',[], 'box','on');
+set(paH, 'xtick',[],'ytick',[], 'box','on','ylim',[-1 1]);
 raH = axes('position',[.87 .11 .06 .83]);		% rms level
 ph = patch([0 0 1 1],[0 0 0 0],'g');
 set(raH, 'xlim',[0 1],'xtick',[],'yaxislocation','right', 'box','on', 'ylim',[0 110],'userData',ph);
@@ -134,7 +134,9 @@ hw = struct('NAME', mfilename, ...		% handler name
 function ds = Decimate(s)
 
 ns0 = length(s);
-deciRate = floor(ns0/400)*10;	% about 100 samples per update
+% deciRate = floor(ns0/400)*10;	% about 100 samples per update
+q = round(ns0/100) * 10;
+deciRate = floor(ns0/q)*10;	% about 100 samples per update
 dr2 = deciRate*2;
 ns = ceil(ns0/dr2)*dr2;
 s = reshape([s;NaN*zeros(ns-ns0,1)],[dr2 ns/dr2]);
@@ -305,9 +307,9 @@ if length(lh) > 4,		% recording in progress
 % non-logged plotting in progress
 else,
 	s = peekdata(AI, AI.SamplesPerTrigger);
-	s = s(:,1);
 	ph = lh{2}; w = lh{3}; rmsMap = lh{4}; lh = lh{1};
 	if ~ishandle(lh), return; end;
+    if size(s,2) > 1, s = s(:,1); end;
 	set(lh,'ydata',s);
 	if ~isempty(rmsMap),
 		rms = sqrt(filter(w,1,s.^2));
@@ -357,13 +359,3 @@ else,
 end;
 set(progressH,'xdata',[0 0 1 1]*sampsAcquired/nSamps,'visible','on');
 marta('RECORD','FINALIZE',(sampsAcquired==nSamps));
-vel = get(lbh(1),'userData');		% update subject level bars
-for k = 1 : 10,
-	if k <= level,
-		y = [.05 .95 .95 .05];
-	else,
-		y = [.05 .05 .05 .05];
-	end;
-	set(lbh(k), 'ydata', y);
-end;
-if sampsAcquired == nSa
