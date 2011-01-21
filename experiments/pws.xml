@@ -6,7 +6,7 @@
 	<SUBJECTID>001</SUBJECTID>
 	<EXTRA>
 		<SEX>M</SEX>
-                <LOGFILE>SPS_001.log</LOGFILE>
+        <LOGNAME>SPS_001.log</LOGNAME>
 	</EXTRA>
 	<CSS>
         div.instr { position: absolute; text-align: center; top: 50%; width: 99%; height: 80px; border: 0px orange solid; font-size: 60; } 
@@ -14,7 +14,7 @@
                      width: 800px; height: 100px; border: 0px orange solid; font-size: 30; } 
         div.instr3 { position: absolute; text-align: center; top: 50%; width: 99%; height: 100px; font-size: 60; } 
         body { height: 100%; margin: 0; padding: 0; }
-        div.stim { position: absolute; width: 90%; left: 5%; top: 65%; border: 10px orange solid; text-align: center; line-height: 100px; font-size: 50; }
+        div.stim { position: absolute; width: 85%; left: 5%; top: 60%; border: 10px orange solid; text-align: center; line-height: 100px; font-size: 50; }
         div.stim2 { position: absolute; width: 90%; left: 5%; top: 10%; border: 10px orange solid; text-align: center; line-height: 70px; font-size: 50; }
         span.bold {color: FF6600; text-transform: uppercase; font-weight: bold; } span.bold2 {color: red; text-transform: uppercase; font-weight: bold; } 
         span.normal {} p.big {line-height: 200%;}
@@ -26,8 +26,39 @@
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
-            
+                <div class="stim"><SCRIPT LANGUAGE="javascript">
+                var sent = new Array();
+                sent[0] = "A gold ring will please most any girl.";
+                sent[1] = "The long journey home took a year.";
+                sent[2] = "She saw a cat in the neighbor's house.";
+                sent[3] = "A pink shell was found on the sandy beach.";
+                sent[4] = "Small children came to see him.";
+                sent[5] = "The grass and bushes were wet with dew.";
+                sent[6] = "The blind man counted his old coins.";
+                sent[7] = "A severe storm tore down the barn.";
+                sent[8] = "She called his name many times.";
+                sent[9] = "When you hear the bell, come quickly.";
+sent[10]='Open your book to the first page.';
+sent[11]='Fish evade the net, and swim off.';
+sent[12]='Dip the pail once and let it settle.';
+sent[13]='Will you please answer that phone.';
+sent[14]='The big red apple fell to the ground.';
+sent[15]='The curtain rose and the show was on.';
+sent[16]='The young prince became heir to the throne.';
+sent[17]='He sent the boy on a short errand.';
+sent[18]='Leave now and you will arrive on time.';
+sent[19]='The corner store was robbed last night. ';
+sent[20]='The store was jammed before the sale could start.';
+sent[21]='It was a bad error on the part of the new judge.';
+sent[22]='One step more and the board will collapse.';
+sent[23]='Take the match and strike it against your shoe.';
+sent[24]='The pot boiled, but the contents failed to jell.';
+sent[25]='The baby puts his right foot in his mouth.';
+sent[26]='The bombs left most of the town in ruins.';
+sent[27]='Stop and stare at the hard working man.';
+sent[28]='The streets are narrow and full of sharp turns.';
+sent[29]='The pup jerked the leash as he saw a feline shape. ';
+                document.write(sent[Math.floor(30*Math.random())])</SCRIPT></div>
             ]]> 
         </PAUSE>        
         <TEMPLATE type="$1" tid="1">
@@ -53,8 +84,39 @@
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
-            
+                <div class="stim"><SCRIPT LANGUAGE="javascript">
+                var sent = new Array();
+                sent[0] = "A gold ring will please most any girl.";
+                sent[1] = "The long journey home took a year.";
+                sent[2] = "She saw a cat in the neighbor's house.";
+                sent[3] = "A pink shell was found on the sandy beach.";
+                sent[4] = "Small children came to see him.";
+                sent[5] = "The grass and bushes were wet with dew.";
+                sent[6] = "The blind man counted his old coins.";
+                sent[7] = "A severe storm tore down the barn.";
+                sent[8] = "She called his name many times.";
+                sent[9] = "When you hear the bell, come quickly.";
+sent[10]='Open your book to the first page.';
+sent[11]='Fish evade the net, and swim off.';
+sent[12]='Dip the pail once and let it settle.';
+sent[13]='Will you please answer that phone.';
+sent[14]='The big red apple fell to the ground.';
+sent[15]='The curtain rose and the show was on.';
+sent[16]='The young prince became heir to the throne.';
+sent[17]='He sent the boy on a short errand.';
+sent[18]='Leave now and you will arrive on time.';
+sent[19]='The corner store was robbed last night. ';
+sent[20]='The store was jammed before the sale could start.';
+sent[21]='It was a bad error on the part of the new judge.';
+sent[22]='One step more and the board will collapse.';
+sent[23]='Take the match and strike it against your shoe.';
+sent[24]='The pot boiled, but the contents failed to jell.';
+sent[25]='The baby puts his right foot in his mouth.';
+sent[26]='The bombs left most of the town in ruins.';
+sent[27]='Stop and stare at the hard working man.';
+sent[28]='The streets are narrow and full of sharp turns.';
+sent[29]='The pup jerked the leash as he saw a feline shape. ';
+                document.write(sent[Math.floor(30*Math.random())])</SCRIPT></div>
             ]]> 
         </PAUSE>        
         <TEMPLATE type="$1" tid="1">
@@ -82,8 +144,39 @@
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
-            
+                <div class="stim"><SCRIPT LANGUAGE="javascript">
+                var sent = new Array();
+                sent[0] = "A gold ring will please most any girl.";
+                sent[1] = "The long journey home took a year.";
+                sent[2] = "She saw a cat in the neighbor's house.";
+                sent[3] = "A pink shell was found on the sandy beach.";
+                sent[4] = "Small children came to see him.";
+                sent[5] = "The grass and bushes were wet with dew.";
+                sent[6] = "The blind man counted his old coins.";
+                sent[7] = "A severe storm tore down the barn.";
+                sent[8] = "She called his name many times.";
+                sent[9] = "When you hear the bell, come quickly.";
+sent[10]='Open your book to the first page.';
+sent[11]='Fish evade the net, and swim off.';
+sent[12]='Dip the pail once and let it settle.';
+sent[13]='Will you please answer that phone.';
+sent[14]='The big red apple fell to the ground.';
+sent[15]='The curtain rose and the show was on.';
+sent[16]='The young prince became heir to the throne.';
+sent[17]='He sent the boy on a short errand.';
+sent[18]='Leave now and you will arrive on time.';
+sent[19]='The corner store was robbed last night. ';
+sent[20]='The store was jammed before the sale could start.';
+sent[21]='It was a bad error on the part of the new judge.';
+sent[22]='One step more and the board will collapse.';
+sent[23]='Take the match and strike it against your shoe.';
+sent[24]='The pot boiled, but the contents failed to jell.';
+sent[25]='The baby puts his right foot in his mouth.';
+sent[26]='The bombs left most of the town in ruins.';
+sent[27]='Stop and stare at the hard working man.';
+sent[28]='The streets are narrow and full of sharp turns.';
+sent[29]='The pup jerked the leash as he saw a feline shape. ';
+                document.write(sent[Math.floor(30*Math.random())])</SCRIPT></div>
             ]]> 
         </PAUSE>        
         <TEMPLATE type="$1" tid="1">
@@ -107,8 +200,39 @@
         <ARG id="1">record</ARG>
         <PAUSE prompt="Instruction">
             <![CDATA[  
-                <div class="instr3"><center><i><br><p>Pause<br><p></p></i></center></div>
-            
+                <div class="stim"><SCRIPT LANGUAGE="javascript">
+                var sent = new Array();
+                sent[0] = "A gold ring will please most any girl.";
+                sent[1] = "The long journey home took a year.";
+                sent[2] = "She saw a cat in the neighbor's house.";
+                sent[3] = "A pink shell was found on the sandy beach.";
+                sent[4] = "Small children came to see him.";
+                sent[5] = "The grass and bushes were wet with dew.";
+                sent[6] = "The blind man counted his old coins.";
+                sent[7] = "A severe storm tore down the barn.";
+                sent[8] = "She called his name many times.";
+                sent[9] = "When you hear the bell, come quickly.";
+sent[10]='Open your book to the first page.';
+sent[11]='Fish evade the net, and swim off.';
+sent[12]='Dip the pail once and let it settle.';
+sent[13]='Will you please answer that phone.';
+sent[14]='The big red apple fell to the ground.';
+sent[15]='The curtain rose and the show was on.';
+sent[16]='The young prince became heir to the throne.';
+sent[17]='He sent the boy on a short errand.';
+sent[18]='Leave now and you will arrive on time.';
+sent[19]='The corner store was robbed last night. ';
+sent[20]='The store was jammed before the sale could start.';
+sent[21]='It was a bad error on the part of the new judge.';
+sent[22]='One step more and the board will collapse.';
+sent[23]='Take the match and strike it against your shoe.';
+sent[24]='The pot boiled, but the contents failed to jell.';
+sent[25]='The baby puts his right foot in his mouth.';
+sent[26]='The bombs left most of the town in ruins.';
+sent[27]='Stop and stare at the hard working man.';
+sent[28]='The streets are narrow and full of sharp turns.';
+sent[29]='The pup jerked the leash as he saw a feline shape. ';
+                document.write(sent[Math.floor(30*Math.random())])</SCRIPT></div>
             ]]> 
         </PAUSE>        
         <TEMPLATE type="$1" tid="1">
