@@ -135,7 +135,7 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
                 <HTML>
                     <![CDATA[ 
                     <div class="stim">
-                        I told him she said @0 again when she saw him yesterday.<br>
+                        I told him she said @0 again when she saw him today.<br>
                     </div>
                 ]]>
                 </HTML>
@@ -232,6 +232,17 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
                     <HTML>
                         <![CDATA[ 
                             <div class="instr3">WELCOME</div>
+                        ]]> 
+                    </HTML>
+                </STIMULI>
+            </TRIAL>
+        </SECTION>
+        <SECTION>
+            <TRIAL type="pause" prompt="Start camera">
+                <STIMULI>
+                    <HTML>
+                        <![CDATA[                 <div class="instr3"><center><i><br><p>Please wait.<br><p></p></i></center></div>
+		
                         ]]> 
                     </HTML>
                 </STIMULI>
@@ -390,7 +401,7 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
         </CENTER>]]></HTML></STIMULI>
       </TRIAL>
       <TRIAL mnemonic="passage2" prompt="passage2" type="RECORD" flag="A" dur="60" cond="PR">
-        <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went so high I could see the lake nearby.  Boy was I SCARED!  
+        <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went so high I could see the lake nearby.  Boy was I scared!  
         I thought to myself, "There's no turning back now."  People were so scared they screamed as we swiftly zoomed fast, fast, and faster 
         along the tracks.  As quickly as it started, the Caterpillar came to a stop.  Unfortunately, it was time to pack the car and drive home.  
         That night I dreamt of the wild ride on the Caterpillar.  Taking a trip to the amusement park and riding on the Caterpillar was my 
