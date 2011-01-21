@@ -196,7 +196,7 @@ set(AI,'StopFcn',@Finalize);
 % init plotting
 axes(hw.PA);
 cla;
-x = linspace(0,state.DUR,nSamps/100);
+x = linspace(0,state.DUR,ceil(nSamps/100));
 y = zeros(1,ceil(nSamps/100));
 plot(x,y,'color','g','linestyle',':');
 lh = line(x,NaN*y, 'eraseMode','none', 'hittest','off', 'clipping','off');
