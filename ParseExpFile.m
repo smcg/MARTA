@@ -422,6 +422,7 @@ for i0=1:numel(finaltrialarray),
     if ~isempty(finaltrialarray(i0).FNAME),
         finaltrialarray(i0).FNAME = sprintf('%s_%03d_%s_%04d_01',tree.INFO.STUDYID,tree.INFO.SUBJECTID,finaltrialarray(i0).FNAME,i0);
     end
+    finaltrialarray(i0).PROMPT = sprintf('%03d %s', i0, finaltrialarray(i0).PROMPT);
 end
 
 finaltrialarray = rmfield(finaltrialarray,'id');
