@@ -124,76 +124,37 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
                 <HTML>
                     <![CDATA[ 
                     <div class="stim">
-                        @0<br>
+                        I said @0 again.<br>
                     </div>
                 ]]>
                 </HTML>
             </STIMULI>
         </TEMPLATE>
-        <TOKEN tid="1" mnemonic="F2S2SS">I said a topic and a packet again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F2S2SL">I told him she said a topic and a packet again when she saw him yesterday.</TOKEN>
-        <TOKEN tid="1" mnemonic="F2S3SS">I said a catapult and a petticoat again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F2S3SL">I told him she said a catapult and a petticoat again when she saw him yesterday.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S2SS">I said a topic and a packet and a carpet again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S2SL">I told him she said a topic and a packet and a carpet again when she saw him yesterday.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S3SS">I said a catapult and a petticoat and a transcript again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S3SL">I told him she said a catapult and a petticoat and a transcript again when she saw him yesterday.</TOKEN>
-    </DEFBLOCK>
-
-    <DEFBLOCK name="sent3prac" flag="A" cond="FS" hw="acq_audio" nreps="2" rand="none" dur="8" isi="0" nargs="1">
-        <ARG id="1">record</ARG>
-        <PAUSE prompt="Instruction">
-            <![CDATA[  
-                <div class="stim"><SCRIPT LANGUAGE="javascript">
-                var sent = new Array();
-                sent[0] = "A gold ring will please most any girl.";
-                sent[1] = "The long journey home took a year.";
-                sent[2] = "She saw a cat in the neighbor's house.";
-                sent[3] = "A pink shell was found on the sandy beach.";
-                sent[4] = "Small children came to see him.";
-                sent[5] = "The grass and bushes were wet with dew.";
-                sent[6] = "The blind man counted his old coins.";
-                sent[7] = "A severe storm tore down the barn.";
-                sent[8] = "She called his name many times.";
-                sent[9] = "When you hear the bell, come quickly.";
-sent[10]='Open your book to the first page.';
-sent[11]='Fish evade the net, and swim off.';
-sent[12]='Dip the pail once and let it settle.';
-sent[13]='Will you please answer that phone.';
-sent[14]='The big red apple fell to the ground.';
-sent[15]='The curtain rose and the show was on.';
-sent[16]='The young prince became heir to the throne.';
-sent[17]='He sent the boy on a short errand.';
-sent[18]='Leave now and you will arrive on time.';
-sent[19]='The corner store was robbed last night. ';
-sent[20]='The store was jammed before the sale could start.';
-sent[21]='It was a bad error on the part of the new judge.';
-sent[22]='One step more and the board will collapse.';
-sent[23]='Take the match and strike it against your shoe.';
-sent[24]='The pot boiled, but the contents failed to jell.';
-sent[25]='The baby puts his right foot in his mouth.';
-sent[26]='The bombs left most of the town in ruins.';
-sent[27]='Stop and stare at the hard working man.';
-sent[28]='The streets are narrow and full of sharp turns.';
-sent[29]='The pup jerked the leash as he saw a feline shape. ';
-                document.write(sent[Math.floor(30*Math.random())])</SCRIPT></div>
-            ]]> 
-        </PAUSE>        
-        <TEMPLATE type="$1" tid="1">
+        <TEMPLATE type="$1" tid="2">
             <STIMULI>
                 <HTML>
                     <![CDATA[ 
                     <div class="stim">
-                        @0<br>
+                        I told him she said @0 again when she saw him yesterday.<br>
                     </div>
                 ]]>
                 </HTML>
             </STIMULI>
         </TEMPLATE>
-        <TOKEN tid="1" mnemonic="F2S4SS">I said a capacity and a caterpillar again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F2S4SL">I told him she said a capacity and a caterpillar again when she saw him yesterday.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S4SS">I said a capacity and a caterpillar and a capability again.</TOKEN>
-        <TOKEN tid="1" mnemonic="F3S4SL">I told him she said a capacity and a caterpillar and a capability again when she saw him yesterday.</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S2SS">a topic and a teacup</TOKEN>
+        <TOKEN tid="2" mnemonic="F2S2SL">a topic and a teacup</TOKEN>
+        <TOKEN tid="1" mnemonic="F2S3SS">a bodyguard and a capital</TOKEN>
+        <TOKEN tid="2" mnemonic="F2S3SL">a bodyguard and a capital</TOKEN>
+        
+        <TOKEN tid="1" mnemonic="F3S2SS">a topic and a teacup and a boutique</TOKEN>
+        <TOKEN tid="2" mnemonic="F3S2SL">a topic and a teacup and a boutique</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S3SS">a bodyguard and a capital and a topical</TOKEN>
+        <TOKEN tid="2" mnemonic="F3S3SL">a bodyguard and a capital and a topical</TOKEN>
+        
+        <TOKEN tid="1" mnemonic="F2S4SS">a capacity and a caterpillar</TOKEN>
+        <TOKEN tid="2" mnemonic="F2S4SL">a capacity and a caterpillar</TOKEN>
+        <TOKEN tid="1" mnemonic="F3S4SS">a capacity and a caterpillar and a capitalist</TOKEN>
+        <TOKEN tid="2" mnemonic="F3S4SL">a capacity and a caterpillar and a capitalist</TOKEN>
     </DEFBLOCK>
 
     <DEFBLOCK name="smithprac" flag="A" cond="SR" hw="acq_audio" nreps="2" rand="none" dur="6" isi="0" nargs="1">
@@ -334,22 +295,6 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
         </SECTION>
 
         <SECTION>
-            <TRIAL type="pause" prompt="Focus sentences (4syll)">
-                <STIMULI>
-                    <HTML>
-                      <![CDATA[ 
-                               <div class="instr"><center><b>Short sentences</b><br><i>Practice Trials</i></center></div>
-                      ]]>
-                    </HTML>
-                </STIMULI>
-            </TRIAL>
-        </SECTION>
-        <SECTION>
-        <BLOCK>sent3prac</BLOCK>
-        </SECTION>
-
-
-        <SECTION>
             <TRIAL type="pause" prompt="Bite plane">
                 <STIMULI>
                     <HTML>
@@ -438,18 +383,18 @@ sent[29]='The pup jerked the leash as he saw a feline shape. ';
             </TRIAL>
       <TRIAL mnemonic="passage1" prompt="passage1" type="RECORD" flag="A" dur="60" cond="PR">
         <STIMULI><HTML><![CDATA[<div class="stim2">Do you like amusement parks?  Well, I sure do.  To amuse myself, I went twice last spring.  
-        My most MEMORABLE moment was riding on the Caterpillar, which is a gigantic rollercoaster high above the ground.  When I saw how high 
+        My most memorable moment was riding on the Caterpillar, which is a gigantic rollercoaster high above the ground.  When I saw how high 
         the Caterpillar rose into the bright blue sky I knew it was for me.  After waiting in line for thirty minutes, I made it to the front 
         where the man measured my height to see if I was tall enough.  I gave the man my coins, asked for change, and jumped on the cart.  
         </P>
         </CENTER>]]></HTML></STIMULI>
       </TRIAL>
       <TRIAL mnemonic="passage2" prompt="passage2" type="RECORD" flag="A" dur="60" cond="PR">
-        <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went SO high I could see the lake nearby.  Boy was I SCARED!  
+        <STIMULI><HTML><![CDATA[<div class="stim2">Tick, tick, tick, the Caterpillar climbed slowly up the tracks.  It went so high I could see the lake nearby.  Boy was I SCARED!  
         I thought to myself, "There's no turning back now."  People were so scared they screamed as we swiftly zoomed fast, fast, and faster 
         along the tracks.  As quickly as it started, the Caterpillar came to a stop.  Unfortunately, it was time to pack the car and drive home.  
         That night I dreamt of the wild ride on the Caterpillar.  Taking a trip to the amusement park and riding on the Caterpillar was my 
-        MOST memorable moment ever!</P>
+        most memorable moment ever!</P>
         </CENTER>]]></HTML></STIMULI>
       </TRIAL>
         </SECTION>
