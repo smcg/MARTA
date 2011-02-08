@@ -114,6 +114,7 @@ for k = 1 : 10,
 	lbH(k) = patch([x(1) x(1) x(2) x(2)],[.05 .05 .05 .05],c(k),'edgecolor',c(k));
 end;
 set(ah,'xlim',[0 1],'ylim',[0 1],'xtick',[],'ytick',[],'box','on');
+drawnow;
 jh = getjframe(lwH);
 jh.setAlwaysOnTop(true);
 %set([pwH lwH],'handleVisibility','callback');
@@ -307,9 +308,9 @@ if length(lh) > 4,		% recording in progress
 % non-logged plotting in progress
 else,
 	s = peekdata(AI, AI.SamplesPerTrigger);
+	s = s(:,1);
 	ph = lh{2}; w = lh{3}; rmsMap = lh{4}; lh = lh{1};
 	if ~ishandle(lh), return; end;
-    if size(s,2) > 1, s = s(:,1); end;
 	set(lh,'ydata',s);
 	if ~isempty(rmsMap),
 		rms = sqrt(filter(w,1,s.^2));

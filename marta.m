@@ -11,7 +11,7 @@ function r = marta(action, varargin)
 %	SPL      - SPL level for sound calibration
 %	TARGET   - SPL target (dB)
 %	RANGE    - SPL range (dB)
-%	SRATE    - sampling rate (16000 Hz)
+%	SRATE    - sampling rate (22050 Hz)
 %	NCHAN    - number of sampled channels {2}
 
 % mkt 03/08
@@ -27,7 +27,7 @@ switch action,
 
 % ABOUT  - blurb
 	case 'ABOUT',
-		vers = 'mkt  01/11 v0.2';
+		vers = 'mkt  02/11 v0.3';
 		s = {'MARTA  - DAQ-based acquisition tool';
 			''
 			['  ' vers]};
@@ -265,7 +265,7 @@ switch action,
 				else,
 					state.MODE = 'ISI';
 					set(fh, 'userData', state);
-					set(state.TIMER,'StartDelay',state.ISI,'TimerFcn',{@ISITimeOut,fh});
+					set(state.TIMER,'StartDelay',state.ISI,'TimerFcn',{@ISITimeOut,fh},'busyMode','queue');
 					start(state.TIMER);
 					return;
 				end;
@@ -338,7 +338,7 @@ switch action,
 			end;	% general case
 		end;	% init recording
 		
-% DEFAULT  - assume action holds name of expFile		
+% DEFAULT  - assume action holds trials for initialization			
 	otherwise,
 		Initialize(trials, varargin{:})
 
@@ -406,7 +406,7 @@ defHWcfg = struct('HW', 'acq_audio', ...		% default acquisition handler
 					'SPL', [], ...
 					'TARGET', [], ...			% range checking
 					'RANGE', [], ...
-					'SRATE', 16000);			% sampling rate (Hz)
+					'SRATE', 22050);			% sampling rate (Hz)
 				
 defCfg = struct('DUR', 3, ...					% duration (secs)
 				'ISI', 0, ...					% ISI (secs)
@@ -470,11 +470,6 @@ if ~isempty(nChan),
 end;
 
 %% parse the experiment file
-% [p,f,e] = fileparts(expFile);
-% if isempty(e), e = '.xml'; expFile = fullfile(p,[f,e]); end;
-% logFile = fullfile(p,[f,'.log']);
-% expName = f;
-
 if isempty(cfg.EXPT),
 	expt = struct('TRIALS',trials, 'INFO',info);
 else,
@@ -488,17 +483,6 @@ logFile = info.EXTRA.LOGNAME;
 diary(logFile);		% start logging
 ls = char(ones(1,60)*61);
 fprintf('\n\n%s\n  %s initiated %s\n%s\n\n', ls, expName, datestr(now),ls);
-% if isempty(cfg.EXPT),
-% 	if ~exist(expFile,'file'),
-% 		error('experiment file %s not found', expFile);
-% 	end;
-% 	[trials,info] = ParseExpFile(expFile);
-% 	expt = struct('TRIALS',trials, 'INFO',info);
-% else,
-% 	trials = cfg.EXPT.TRIALS;
-% 	info = cfg.EXPT.INFO;
-% 	expt = cfg.EXPT;
-% end;
 trialList = {trials.FNAME};
 kk = setdiff([1:length(trials)],strmatch('RECORD',upper({trials.TYPE})));
 for k = kk,
@@ -561,7 +545,7 @@ pmH = uimenu(mh, 'label', 'Toggle &Plotting', ...
 			'accelerator', 'P', ...
 			'callback', 'marta PLOT');
 uimenu(mh, 'label', 'Saturation Check', ...
-			'checked', 'on', ...
+			'checked', 'off', ...
 			'callback', 'marta SATCHK');
 mcH = uimenu(mh, 'label', 'Mike Calibration', ...
 			'callback', 'marta MIKECAL');
@@ -730,7 +714,7 @@ state = struct( ...
 				'EXT', '.daq', ...				% logged file extension
 				'DUR', cfg.DUR, ...				% active duration (secs)
 				'ISI', cfg.ISI, ...				% active ISI (secs)
-				'SATCHK', 1, ...				% saturation check
+				'SATCHK', 0, ...				% saturation check
 				'DEFHTML', cfg.DEFHTML, ...		% default HTML
 				'BROWSER', browser, ...			% browser info
 				'CONTROLLER', controller, ...	% controller window
